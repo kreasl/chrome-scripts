@@ -1,0 +1,9 @@
+const deleteBatch = async () => {
+    const goShadow = (path) => path.reduce((acc, curr) => acc.querySelector(curr).shadowRoot, document);
+    const ironList = goShadow(['#history-app', '#history']);
+    Array.from(ironList.querySelectorAll('#infinite-list history-item')).forEach(hi => hi.shadowRoot.querySelector('#checkbox').click())
+    await (new Promise(res => setTimeout(() => res(), 100)));
+    goShadow(['#history-app', '#toolbar', 'cr-toolbar-selection-overlay']).querySelector('#delete').click();
+    await (new Promise(res => setTimeout(() => res(), 100)));
+    goShadow(['#history-app', '#history']).querySelector('cr-button.action-button').click()
+}
